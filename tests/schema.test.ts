@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { SchemaValidator, validateSchema } from '../../src/validation/schema';
-import { ValidationError } from '../../src/errors';
+import { SchemaValidator, validateSchema } from '../src/schema';
+import { ValidationError } from '../src/errors';
 
 describe('validateSchema', () => {
   describe('with valid data', () => {
