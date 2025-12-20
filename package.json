@@ -1,7 +1,7 @@
 {
   "name": "@fjell/validation",
   "description": "Validation Logic for Fjell Items and Keys",
-  "version": "4.4.3",
+  "version": "4.4.4-dev.0",
   "keywords": [
     "validation",
     "fjell"
