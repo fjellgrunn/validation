@@ -1,7 +1,7 @@
 {
   "name": "@fjell/validation",
   "description": "Validation Logic for Fjell Items and Keys",
-  "version": "4.4.2",
+  "version": "4.4.3",
   "keywords": [
     "validation",
     "fjell"
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@fjell/logging": "^4.4.66",
-    "@fjell/types": "4.4.5"
+    "@fjell/types": "4.4.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
