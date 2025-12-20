@@ -44,6 +44,7 @@ yarn.lock
 .yarn/
 
 # Other
+.env
 .kodrdriv/
 commit.sh
 release.sh
