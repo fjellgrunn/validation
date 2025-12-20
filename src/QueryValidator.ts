@@ -4,8 +4,7 @@
  * Validates ItemQuery and OperationParams structures.
  */
 
-import type { ItemQuery } from "@fjell/types/query/ItemQuery";
-import type { OperationParams } from "@fjell/types/operations/Operations";
+import type { ItemQuery, OperationParams } from "@fjell/types";
 import Logging from "@fjell/logging";
 
 const logger = Logging.getLogger('validation.QueryValidator');

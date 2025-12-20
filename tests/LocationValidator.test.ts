@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { isValidLocations, validateLocations } from '../src/LocationValidator';
-import type { LocKeyArray, Coordinate } from '@fjell/types';
+import type { Coordinate, LocKeyArray } from '@fjell/types';
 
 // Mock coordinate for testing
 const mockCoordinate = (kta: readonly string[]): Coordinate<any, any, any, any, any, any> => ({
