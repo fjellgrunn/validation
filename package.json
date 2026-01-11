@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/getfjell/validation.git"
+    "url": "git+https://github.com/fjellgrunn/validation.git"
   }
 }
