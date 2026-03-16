@@ -27,8 +27,8 @@
     "prepublishOnly": "npm run clean && npm run build"
   },
   "dependencies": {
-    "@fjell/logging": "^4.4.71",
-    "@fjell/types": "^4.4.8"
+    "@fjell/logging": "^4.4.72",
+    "@fjell/types": "^4.4.9"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
