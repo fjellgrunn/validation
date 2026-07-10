@@ -36,15 +36,24 @@ export async function validateSchema<T>(
     if (schema.parseAsync) {
       return await schema.parseAsync(data);
     }
-    
-    // Fall back to safeParse (non-throwing)
-    const result = schema.safeParse(data);
-    if (result.success) {
-      return result.data;
-    } else {
-      // It's an error, throw it to be caught below
-      throw result.error;
+
+    // Fall back to safeParse (non-throwing) when present
+    if (typeof schema.safeParse === 'function') {
+      const result = schema.safeParse(data);
+      if (result.success) {
+        return result.data;
+      } else {
+        // It's an error, throw it to be caught below
+        throw result.error;
+      }
     }
+
+    // Fall back to sync parse (documented on SchemaValidator, previously unused)
+    if (typeof schema.parse === 'function') {
+      return schema.parse(data);
+    }
+
+    throw new ValidationError('Schema validator must implement parseAsync, safeParse, or parse');
   } catch (error: any) {
     // Check if it's a ZodError (has issues property)
     if (error && Array.isArray(error.issues)) {

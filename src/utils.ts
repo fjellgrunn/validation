@@ -1,13 +1,20 @@
 import { ComKey, LocKey, PriKey } from "@fjell/types";
 
 export const isComKey = (key: any): key is ComKey<any, any, any, any, any, any> => {
-  return typeof key !== 'undefined' &&
-    (typeof key.pk !== 'undefined' && typeof key.kt !== 'undefined') && (typeof key.loc !== 'undefined' && Array.isArray(key.loc));
+  return key != null &&
+    typeof key === 'object' &&
+    typeof key.pk !== 'undefined' &&
+    typeof key.kt !== 'undefined' &&
+    typeof key.loc !== 'undefined' &&
+    Array.isArray(key.loc);
 }
 
 export const isPriKey = (key: any): key is PriKey<any> => {
-  return typeof key !== 'undefined' &&
-    (typeof key.pk !== 'undefined' && typeof key.kt !== 'undefined') && (typeof key.loc === 'undefined');
+  return key != null &&
+    typeof key === 'object' &&
+    typeof key.pk !== 'undefined' &&
+    typeof key.kt !== 'undefined' &&
+    typeof key.loc === 'undefined';
 }
 
 export const toKeyTypeArray = <

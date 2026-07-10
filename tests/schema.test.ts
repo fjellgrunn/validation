@@ -275,6 +275,27 @@ describe('validateSchema', () => {
       const result = await validateSchema(data, mockSchema);
       expect(result).toEqual(data);
     });
+
+    it('should fall back to parse when safeParse is missing', async () => {
+      let parseCalled = false;
+      const mockSchema = {
+        parse: (data: unknown) => {
+          parseCalled = true;
+          if (typeof data === 'object' && data !== null && 'name' in data) {
+            return data as { name: string };
+          }
+          throw new Error('Invalid data');
+        }
+      } as SchemaValidator<{ name: string }>;
+
+      // Remove safeParse to simulate parse-only validators
+      delete (mockSchema as any).safeParse;
+
+      const data = { name: 'parse-only' };
+      const result = await validateSchema(data, mockSchema);
+      expect(result).toEqual(data);
+      expect(parseCalled).toBe(true);
+    });
   });
 });
 
