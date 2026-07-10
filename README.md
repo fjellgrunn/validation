@@ -11,14 +11,13 @@ npm install @fjell/validation
 ## Usage
 
 ```typescript
-import { ItemValidator, KeyValidator } from '@fjell/validation';
+import { validatePriKey } from '@fjell/validation';
 import { PriKey } from '@fjell/types';
 
 const key: PriKey<'user'> = { kt: 'user', pk: '123' };
 
-// Validate a key
-if (KeyValidator.isPriKey(key)) {
-  console.log('Valid primary key');
-}
+// Validate a primary key (throws on invalid shape/type)
+validatePriKey(key, 'user', 'example');
+console.log('Valid primary key');
 ```
 
