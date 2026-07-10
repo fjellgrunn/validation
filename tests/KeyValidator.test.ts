@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { validateComKey, validateKey, validatePriKey } from '../src/KeyValidator';
-import type { ComKey, PriKey, Coordinate } from '@fjell/types';
+import type { ComKey, Coordinate, PriKey } from '@fjell/types';
 
 // Mock coordinate for testing
 const mockCoordinate = (kta: readonly string[]): Coordinate<any, any, any, any, any, any> => ({
