@@ -380,10 +380,10 @@ describe('ItemValidator', () => {
         );
       });
 
-      it('should include item in error message when key is missing', () => {
+      it('should include redacted item summary in error message when key is missing', () => {
         const item = { state: { name: 'Test' } } as any;
         expect(() => validateKeys(item, ['product'])).toThrow(
-          /{"state":{"name":"Test"}}/
+          /state.*\[Object\]/
         );
       });
     });

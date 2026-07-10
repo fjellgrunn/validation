@@ -7,6 +7,7 @@
 import type { ItemQuery } from "@fjell/types/query/ItemQuery";
 import type { OperationParams } from "@fjell/types/operations/Operations";
 import Logging from "@fjell/logging";
+import { summarizePayload } from "./redact";
 
 const logger = Logging.getLogger('validation.QueryValidator');
 
@@ -52,7 +53,7 @@ export const validateQuery = (
       `[${operation}] Invalid query parameter.\n` +
       `\n` +
       `Query cannot be an array.\n` +
-      `Received: ${JSON.stringify(query)}`
+      `Received: ${summarizePayload(query)}`
     );
   }
   
@@ -118,7 +119,7 @@ export const validateOperationParams = (
       `[${operation}] Invalid operation parameters.\n` +
       `\n` +
       `Parameters cannot be an array.\n` +
-      `Received: ${JSON.stringify(params)}`
+      `Received: ${summarizePayload(params)}`
     );
   }
   
@@ -144,7 +145,7 @@ export const validateOperationParams = (
         `\n` +
         `Allowed types: string, number, boolean, Date, or arrays of these types\n` +
         `Received: ${valueType}\n` +
-        `Value: ${JSON.stringify(value)}`
+        `Value: ${summarizePayload(value)}`
       );
     }
   }
@@ -168,7 +169,7 @@ export const validateFinderName = (
     throw new Error(
       `[${operation}] Finder name must be a non-empty string.\n` +
       `\n` +
-      `Received: ${JSON.stringify(finder)}`
+      `Received: ${summarizePayload(finder)}`
     );
   }
   
@@ -200,7 +201,7 @@ export const validateActionName = (
     throw new Error(
       `[${operation}] Action name must be a non-empty string.\n` +
       `\n` +
-      `Received: ${JSON.stringify(action)}`
+      `Received: ${summarizePayload(action)}`
     );
   }
   
@@ -232,7 +233,7 @@ export const validateFacetName = (
     throw new Error(
       `[${operation}] Facet name must be a non-empty string.\n` +
       `\n` +
-      `Received: ${JSON.stringify(facet)}`
+      `Received: ${summarizePayload(facet)}`
     );
   }
   

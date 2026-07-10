@@ -8,6 +8,7 @@ import type { Item } from "@fjell/types";
 import { toKeyTypeArray } from "./utils";
 import type { AllItemTypeArrays, ComKey, PriKey } from "@fjell/types";
 import Logging from "@fjell/logging";
+import { summarizeKey, summarizePayload } from "./redact";
 
 const logger = Logging.getLogger('validation.ItemValidator');
 
@@ -50,7 +51,7 @@ const validatePKForItem = <
     });
     throw new Error(
       `Item validation failed: item does not have a key property. Expected key with type '${pkType}'. ` +
-      `Item: ${JSON.stringify(item)}. This indicates a database processing error.`
+      `Item: ${summarizePayload(item)}. This indicates a database processing error.`
     );
   }
 
@@ -67,7 +68,7 @@ const validatePKForItem = <
     });
     throw new Error(
       `Item has incorrect primary key type. Expected '${pkType}', got '${keyTypeArray[0]}'. ` +
-      `Key: ${JSON.stringify(item.key)}. This indicates a data model mismatch.`
+      `Key: ${summarizeKey(item.key)}. This indicates a data model mismatch.`
     );
   }
   return item;
@@ -155,12 +156,12 @@ export const validateKeys = <
       component: 'core',
       operation: 'validateKeys',
       expectedKeyTypes: keyTypes,
-      item: JSON.stringify(item),
+      item: summarizePayload(item),
       suggestion: 'Ensure the item has a valid key property'
     });
     throw new Error(
       `Key validation failed: item does not have a key property. Expected key with types [${keyTypes.join(', ')}]. ` +
-      `Item: ${JSON.stringify(item)}. This indicates a database processing error.`
+      `Item: ${summarizePayload(item)}. This indicates a database processing error.`
     );
   }
 
@@ -179,7 +180,7 @@ export const validateKeys = <
     throw new Error(
       `Item has incorrect key hierarchy depth. Expected ${keyTypes.length} levels [${keyTypes.join(' > ')}], ` +
       `but got ${keyTypeArray.length} levels [${keyTypeArray.join(' > ')}]. ` +
-      `Key: ${JSON.stringify(item.key)}. This indicates a coordinate/hierarchy mismatch.`
+      `Key: ${summarizeKey(item.key)}. This indicates a coordinate/hierarchy mismatch.`
     );
   }
 
@@ -195,7 +196,7 @@ export const validateKeys = <
     });
     throw new Error(
       `Item has incorrect key types. Expected [${keyTypes.join(' > ')}], but got [${keyTypeArray.join(' > ')}]. ` +
-      `Key: ${JSON.stringify(item.key)}. This indicates a data model mismatch.`
+      `Key: ${summarizeKey(item.key)}. This indicates a data model mismatch.`
     );
   }
   return item;

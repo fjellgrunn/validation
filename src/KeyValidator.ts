@@ -8,6 +8,7 @@ import type { ComKey, PriKey } from "@fjell/types";
 import type { Coordinate } from "@fjell/types";
 import { isComKey, isPriKey } from "./utils";
 import Logging from "@fjell/logging";
+import { summarizeKey } from "./redact";
 
 const logger = Logging.getLogger('validation.KeyValidator');
 
@@ -52,7 +53,7 @@ const validateLocationKeyOrder = <
     ).join('\n');
     
     const actualOrder = key.loc.map((loc, i) =>
-      `  [${i}] { kt: '${loc.kt}', lk: ${JSON.stringify(loc.lk)} }`
+      `  [${i}] { kt: '${loc.kt}', lk: [${typeof loc.lk}] }`
     ).join('\n');
     
     throw new Error(
@@ -86,7 +87,7 @@ const validateLocationKeyOrder = <
       ).join('\n');
       
       const actualOrder = key.loc.map((loc, i) =>
-        `  [${i}] { kt: '${loc.kt}', lk: ${JSON.stringify(loc.lk)} }`
+        `  [${i}] { kt: '${loc.kt}', lk: [${typeof loc.lk}] }`
       ).join('\n');
       
       throw new Error(
@@ -190,7 +191,7 @@ export const validateKey = <
       `  }\n` +
       `\n` +
       `Received: PriKey with format:\n` +
-      `  ${JSON.stringify(key, null, 2)}\n` +
+      `  ${summarizeKey(key)}\n` +
       `\n` +
       `Example correct usage:\n` +
       `  library.operations.${operation}({\n` +
@@ -216,7 +217,7 @@ export const validateKey = <
       `  { kt: '${keyTypeArray[0]}', pk: string|number }\n` +
       `\n` +
       `Received: ComKey with format:\n` +
-      `  ${JSON.stringify(key, null, 2)}\n` +
+      `  ${summarizeKey(key)}\n` +
       `\n` +
       `Example correct usage:\n` +
       `  library.operations.${operation}({ kt: '${keyTypeArray[0]}', pk: 'item-id' })`
@@ -233,7 +234,7 @@ export const validateKey = <
       `The provided key does not match PriKey or ComKey format.\n` +
       `\n` +
       `Received:\n` +
-      `  ${JSON.stringify(key, null, 2)}\n` +
+      `  ${summarizeKey(key)}\n` +
       `\n` +
       `Valid key formats:\n` +
       `  PriKey: { kt: string, pk: string|number }\n` +

@@ -16,6 +16,12 @@
       "default": "./dist/index.js"
     }
   },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "type": "module",
   "scripts": {
     "lint": "eslint . --ext .ts --fix",
@@ -51,4 +57,3 @@
     "url": "git+https://github.com/getfjell/core.git"
   }
 }
-
